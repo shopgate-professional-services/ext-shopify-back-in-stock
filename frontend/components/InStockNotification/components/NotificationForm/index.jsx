@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextField from '@shopgate/pwa-ui-shared/TextField';
-import connect from './connector';
 
 /**
  * Render Notification Form
@@ -38,14 +37,17 @@ class NotificationForm extends Component {
     const emailIsValid = this.validateEmail(this.state.email);
     this.setState({ emailIsValid });
 
-    if (emailIsValid) {
-      console.log('form submit');
+    if (!emailIsValid) {
+      return;
     }
+    const { productNumber, variantNumber, sendRequest } = this.props;
+    sendRequest(productNumber, variantNumber, this.state.email);
   };
 
   validateEmail = email => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 
   render() {
+    const { isFetching } = this.props;
     return (
       <form onSubmit={this.handelSubmit}>
         <TextField
@@ -56,14 +58,17 @@ class NotificationForm extends Component {
           value={this.state.email}
           errorText={this.state.emailIsValid ? '' : 'Please provide a valid email address'}
         />
-        <button
-          type="submit"
-        >
+        {!isFetching ?
+          <button
+            type="submit"
+          >
           Submit
-        </button>
+          </button> :
+          <div>Fetching </div>
+        }
       </form>
     );
   }
 }
 
-export default connect(NotificationForm);
+export default NotificationForm;
