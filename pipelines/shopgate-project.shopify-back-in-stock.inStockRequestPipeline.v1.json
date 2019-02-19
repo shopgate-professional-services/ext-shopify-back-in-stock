@@ -1,0 +1,62 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.shopify-back-in-stock.inStockRequestPipeline.v1",
+    "public": true,
+    "input": [
+      {
+        "key": "email",
+        "id": "100"
+      },
+      {
+        "key": "productNumber",
+        "id": "101"
+      },
+      {
+        "key": "variantNumber",
+        "id": "102"
+      }
+    ],
+    "output": [
+      {
+        "key": "message",
+        "id": "200"
+      },
+      {
+        "key": "status",
+        "id": "201"
+      }
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/shopify-back-in-stock",
+        "path": "@shopgate-project/shopify-back-in-stock/lib/requestInStockNotification.js",
+        "input": [
+          {
+            "key": "email",
+            "id": "100"
+          },
+          {
+            "key": "productNumber",
+            "id": "101"
+          },
+          {
+            "key": "variantNumber",
+            "id": "102"
+          }
+        ],
+        "output": [
+          {
+            "key": "message",
+            "id": "200"
+          },
+          {
+            "key": "status",
+            "id": "201"
+          }
+        ]
+      }
+    ]
+  }
+}
