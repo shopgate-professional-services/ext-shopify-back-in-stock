@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import TextField from '@shopgate/pwa-ui-shared/TextField';
 import Form from '@shopgate/pwa-ui-shared/Form';
 import ActionButton from '@shopgate/pwa-ui-shared/ActionButton';
-import Button from '@shopgate/pwa-ui-shared/Button';
+import I18n from '@shopgate/pwa-common/components/I18n';
+import HeaderButton from '../HeaderButton';
 import styles from './styles';
-
+import {
+  IN_STOCK_NOTIFICATION_HEADER_TEXT,
+  IN_STOCK_NOTIFICATION_FORM_INPUT_LABEL,
+  IN_STOCK_NOTIFICATION_FORM_SUBMIT_TEXT,
+} from '../../../../constants';
+import validateEmailAddress from '../../../../helpers/validateEmailAddress';
 /**
  * Render Notification Form
  */
@@ -74,7 +80,7 @@ class NotificationForm extends Component {
    * Handle Form submit
    */
   handelSubmit = () => {
-    const emailIsValid = this.validateEmail(this.state.email);
+    const emailIsValid = validateEmailAddress(this.state.email);
     this.setState({ emailIsValid });
 
     if (!emailIsValid) {
@@ -90,13 +96,6 @@ class NotificationForm extends Component {
   };
 
   /**
-   * Validate email address
-   * @param {string} email Email address
-   * @return {boolean}
-   */
-  validateEmail = email => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-
-  /**
    * Render component
    * @return {JSX}
    */
@@ -104,36 +103,28 @@ class NotificationForm extends Component {
     const { isFetching } = this.props;
     const { formOpen } = this.state;
     return (
-      <div>
-        <div className={formOpen ? styles.closedButtonWrapper : styles.openButtonWrapper}>
-          <div className={styles.innerButtonWrapper}>
-            <Button
-              type="secondary"
-              onClick={this.handelOpenClose}
-            >
-            EMAIL WHEN AVAILABLE
-            </Button>
-          </div>
-        </div>
+      <div className={styles.overallWrapper}>
+        <HeaderButton
+          text={IN_STOCK_NOTIFICATION_HEADER_TEXT}
+          onClick={this.handelOpenClose}
+        />
         <div className={formOpen ? styles.openFormWrapper : styles.closedFormWrapper}>
-          <div>
-            <button onClick={this.handelOpenClose}>X</button>
-          </div>
           <Form onSubmit={this.handelSubmit}>
             <TextField
               name="notification-email"
               type="email"
-              label="Email Address"
+              label={IN_STOCK_NOTIFICATION_FORM_INPUT_LABEL}
               onChange={this.updateEmailValue}
               value={this.state.email}
-              errorText={this.state.emailIsValid ? '' : 'Please provide a valid email address'}
+              errorText={this.state.emailIsValid ? '' : 'inStockNotification.form.input.error_text'}
             />
             <ActionButton
               type="submit"
               loading={isFetching}
               onClick={() => {}}
+              className={styles.submitButton}
             >
-          Submit
+              <I18n.Text string={IN_STOCK_NOTIFICATION_FORM_SUBMIT_TEXT} />
             </ActionButton>
           </Form>
         </div>

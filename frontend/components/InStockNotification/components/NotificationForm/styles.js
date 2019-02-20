@@ -1,46 +1,38 @@
 import { css } from 'glamor';
+import {
+  IN_STOCK_NOTIFICATION_BUTTON_COLOR,
+  IN_STOCK_NOTIFICATION_BUTTON_TEXT_COLOR,
+} from '../../../../constants';
+
+const overallWrapper = css({
+  padding: 3,
+});
+
+const submitButton = css({
+  backgroundColor: IN_STOCK_NOTIFICATION_BUTTON_COLOR,
+  color: `${IN_STOCK_NOTIFICATION_BUTTON_TEXT_COLOR} !important`,
+});
 
 const formWrapperBase = {
   overflow: 'hidden',
+  width: '100%',
   padding: 3,
-  transition: 'width .3s',
-};
-
-const buttonWrapperBase = {
-  overflow: 'hidden',
-  transition: 'width .3s',
+  transition: 'height .3s',
 };
 
 const closedFormWrapper = css({
   ...formWrapperBase,
-  width: 0,
   height: 0,
 });
 
 const openFormWrapper = css({
   ...formWrapperBase,
-  width: '100%',
-});
-
-const closedButtonWrapper = css({
-  ...buttonWrapperBase,
-  width: 0,
-  height: 0,
-});
-
-const openButtonWrapper = css({
-  ...buttonWrapperBase,
-  width: '100%',
-});
-
-const innerButtonWrapper = css({
-  width: '100%',
+  height: 150,
 });
 
 export default {
   closedFormWrapper,
   openFormWrapper,
-  closedButtonWrapper,
-  openButtonWrapper,
-  innerButtonWrapper,
+  submitButton,
+  overallWrapper,
 };

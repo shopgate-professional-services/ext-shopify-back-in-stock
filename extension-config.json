@@ -12,9 +12,64 @@
       "id": "inStockNotificationConfirmations",
       "path": "frontend/reducers/index.js",
       "type": "reducers"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/en-US.json",
+      "id": "locale/en-US"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/de-DE.json",
+      "id": "locale/de-DE"
     }
   ],
   "configuration": {
+    "backInStockButtonColor": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Hex color code Back in Stock buttons should have"
+      }
+    },
+    "backInStockButtonTextColor": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Hex color code Back in Stock buttons text should have"
+      }
+    },
+    "backInStockOpenFormButtonText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text the bar which opens the in stock form should have"
+      }
+    },
+    "backInStockFormSubmitButtonText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text of the Back in Stock form submit button"
+      }
+    },
+    "backInStockSubmissionConfirmationText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text of form header bar after notification text has been submitted"
+      }
+    },
     "backInStockAPIUrl": {
       "type": "admin",
       "destination": "backend",

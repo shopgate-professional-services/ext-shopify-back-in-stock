@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NotificationForm from './components/NotificationForm';
+import HeaderButton from './components/HeaderButton';
+import { IN_STOCK_NOTIFICATION_HEADER_TEXT_SENT } from '../../constants';
 
 /**
  * In stock notification component.
@@ -62,7 +64,7 @@ class InStockNotification extends Component {
       sendRequest,
     } = this.props;
     if (confirmationMessage) {
-      return <div>{confirmationMessage}</div>;
+      return <HeaderButton text={IN_STOCK_NOTIFICATION_HEADER_TEXT_SENT} />;
     }
     if (showForm && productNumber) {
       return (
@@ -75,7 +77,7 @@ class InStockNotification extends Component {
         />);
     }
 
-    return <div>hide form</div>;
+    return null;
   }
 }
 

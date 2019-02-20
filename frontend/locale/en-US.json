@@ -1,0 +1,15 @@
+{
+  "inStockNotification": {
+    "header": {
+      "before_submit": "EMAIL WHEN AVAILABLE",
+      "after_submit": "NOTIFICATION REQUEST SENT"
+    },
+    "form": {
+      "input": {
+        "label": "email address",
+        "error_text": "Please provide a valid email address"
+      },
+      "submit": "Submit"
+    }
+  }
+}
