@@ -5,7 +5,7 @@ import {
 } from '../constants';
 
 /**
- * RequestDummies action.
+ * RequestInStockNotification action.
  * @param {string} productNumber Base Product id for which the notification is being requested.
  * @param {string} variantNumber Variant id for which the notification is being requested.
  * @param {string} email Email Address to which the notification will be sent.
@@ -19,25 +19,30 @@ export const requestInStockNotification = (productNumber, variantNumber, email) 
 });
 
 /**
- * ReceiveDummies action.
- * @param {string} productId Product Id for which notification was confirmed.
+ * ReceiveInStockNotification action.
+ * @param {string} productNumber Product Id for which notification was confirmed.
+ * @param {string} variantNumber Variant Id for which notification was confirmed.
  * @param {string} status Confirmation status.
  * @param {string} message Confirmation message.
  * @returns {Object}
  */
-export const receiveInStockNotificationConfirmation = (productId, status, message) => ({
-  type: RECEIVE_IN_STOCK_NOTIFICATION_CONFIRMATION,
-  productId,
-  status,
-  message,
-});
+export const receiveInStockNotificationConfirmation =
+  (productNumber, variantNumber, status, message) => ({
+    type: RECEIVE_IN_STOCK_NOTIFICATION_CONFIRMATION,
+    productNumber,
+    variantNumber,
+    status,
+    message,
+  });
 
 /**
- * ErrorDummies action.
- * @param {string} productId dummyId.
+ * ErrorInStockNotifications action.
+ * @param {string} productNumber Product Id.
+ * @param {string} variantNumber Variant Id
  * @returns {Object}
  */
-export const errorInStockNotification = productId => ({
+export const errorInStockNotification = (productNumber, variantNumber) => ({
   type: ERROR_IN_STOCK_NOTIFICATION,
-  productId,
+  productNumber,
+  variantNumber,
 });

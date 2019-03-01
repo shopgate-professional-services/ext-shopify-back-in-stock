@@ -6,12 +6,12 @@ import {
 
 const overallWrapper = css({
   padding: 3,
-});
+}).toString();
 
 const submitButton = css({
   backgroundColor: IN_STOCK_NOTIFICATION_BUTTON_COLOR,
   color: `${IN_STOCK_NOTIFICATION_BUTTON_TEXT_COLOR} !important`,
-});
+}).toString();
 
 const formWrapperBase = {
   overflow: 'hidden',
@@ -23,12 +23,12 @@ const formWrapperBase = {
 const closedFormWrapper = css({
   ...formWrapperBase,
   height: 0,
-});
+}).toString();
 
 const openFormWrapper = css({
   ...formWrapperBase,
   height: 150,
-});
+}).toString();
 
 export default {
   closedFormWrapper,

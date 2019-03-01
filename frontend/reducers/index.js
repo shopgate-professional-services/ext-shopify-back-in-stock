@@ -18,8 +18,8 @@ const backInStockNotificationReducer = (
     case REQUEST_IN_STOCK_NOTIFICATION:
       return {
         ...state,
-        [action.variantNumber]: {
-          ...state[action.variantNumber],
+        [`${action.productNumber}_${action.variantNumber}`]: {
+          ...state[`${action.productNumber}_${action.variantNumber}`],
           isFetching: true,
           expires: 0,
         },
@@ -27,8 +27,8 @@ const backInStockNotificationReducer = (
     case RECEIVE_IN_STOCK_NOTIFICATION_CONFIRMATION:
       return {
         ...state,
-        [action.productId]: {
-          ...state[action.productId],
+        [`${action.productNumber}_${action.variantNumber}`]: {
+          ...state[`${action.productNumber}_${action.variantNumber}`],
           message: action.message,
           status: action.status,
           isFetching: false,
@@ -38,9 +38,10 @@ const backInStockNotificationReducer = (
     case ERROR_IN_STOCK_NOTIFICATION:
       return {
         ...state,
-        [action.variantNumber]: {
-          ...state[action.variantNumber],
+        [`${action.productNumber}_${action.variantNumber}`]: {
+          ...state[`${action.productNumber}_${action.variantNumber}`],
           isFetching: false,
+          status: 'error',
           expires: 0,
         },
       };

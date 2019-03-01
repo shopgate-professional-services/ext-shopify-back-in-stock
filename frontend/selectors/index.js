@@ -1,19 +1,31 @@
 import { createSelector } from 'reselect';
 import {
+  getBaseProductId,
   getProductId,
   hasProductVariants,
   isProductOrderable,
+  getProductById,
 } from '@shopgate/pwa-common-commerce/product/selectors/product';
 import { isProductPageLoading } from '@shopgate/pwa-common-commerce/product/selectors/page';
 import { REDUX_NAMESPACE_IN_STOCK_NOTIFICATIONS_CONFIRMATIONS } from '../constants';
+import parseJson from '../helpers/parseJson';
 
 /**
- * Get Notification Confirmation States
- * @param {Object} state Redux state
- * @return {Object|null}
+ * Get shopify variant id from custom data
+ * @param {Object} state Redux state,
+ * @param {Object} props Component props
+ * @return {string}
  */
-const getInStockNotificationConfirmationsState = state =>
-  state.extensions[REDUX_NAMESPACE_IN_STOCK_NOTIFICATIONS_CONFIRMATIONS];
+export const getShopifyVariant = createSelector(
+  getProductById,
+  (product) => {
+    const { productData } = product || {};
+    const { customData } = productData || {};
+    const customDataObject = parseJson(customData);
+    const { variant_id: shopifyVariantId } = customDataObject || {};
+    return shopifyVariantId ? `${shopifyVariantId}` : null;
+  }
+);
 
 /**
  * Get Variant Id
@@ -24,13 +36,22 @@ const getInStockNotificationConfirmationsState = state =>
 export const getVariantId = createSelector(
   getProductId,
   hasProductVariants,
-  (productId, baseProductId, hasVariants) => {
-    if (productId && !hasVariants) {
-      return productId;
+  getShopifyVariant,
+  (productId, hasVariants, shopifyVariant) => {
+    if (shopifyVariant && !hasVariants) {
+      return shopifyVariant;
     }
-    return null;
+    return productId;
   }
 );
+
+/**
+ * Get Notification Confirmation States
+ * @param {Object} state Redux state
+ * @return {Object|null}
+ */
+const getInStockNotificationConfirmationsState = state =>
+  state.extensions[REDUX_NAMESPACE_IN_STOCK_NOTIFICATIONS_CONFIRMATIONS];
 
 /**
  * Determine if request in stock notification form should be shown.
@@ -52,9 +73,10 @@ export const getShouldShowInStockForm = createSelector(
  * @return {Object|undefined}
  */
 export const getInStockNotificationConfirmation = createSelector(
+  getBaseProductId,
+  getVariantId,
   getInStockNotificationConfirmationsState,
-  (state, props) => props,
-  (confirmations, { productId }) => confirmations[productId]
+  (baseProductId, variantId, confirmations) => confirmations[`${baseProductId}_${variantId}`]
 );
 
 /**
@@ -98,3 +120,4 @@ export const getInStockNotificationConfirmationisFetching = createSelector(
     return !!isFetching;
   }
 );
+

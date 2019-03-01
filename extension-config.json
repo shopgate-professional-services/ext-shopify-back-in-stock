@@ -88,5 +88,22 @@
         "label": "The name of the shop Back In Stock is integrated with"
       }
     }
-  }
+  },
+  "steps": [
+    {
+      "path": "extension/steps/exposeCustomDataToGetProduct.js",
+      "hooks": ["shopgate.catalog.getProduct.v1:afterFetchProducts"],
+      "input": [
+        {
+          "key": "products"
+        }
+      ],
+      "output": [
+        {
+          "key": "customData",
+          "addPipelineOutput": true
+        }
+      ]
+    }
+  ]
 }

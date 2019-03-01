@@ -119,7 +119,7 @@ class NotificationForm extends Component {
               errorText={this.state.emailIsValid ? '' : 'inStockNotification.form.input.error_text'}
             />
             <ActionButton
-              type="submit"
+              type="secondary"
               loading={isFetching}
               onClick={() => {}}
               className={styles.submitButton}

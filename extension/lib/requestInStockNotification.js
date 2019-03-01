@@ -1,23 +1,27 @@
+const InvalidBackInStockRequestError = require('../errors/InvalidBackInStockRequestError')
+const parseBackInStockErrors = require('../helpers/parseBackInStockErrors')
+
 /**
  * Do request to back in stock api
- * @param {PipelineContext} context
- * @param {Object} input
+ * @param {PipelineContext} context Connect context
+ * @param {Object} input Connect input
  * @returns {Promise<Object>}
  */
 module.exports = async (context, input) => {
+  console.log('input from requestInStockNotification', JSON.stringify(input, undefined, 2))
   const { email, productNumber, variantNumber } = input
   if (!email) {
-    throw new Error('Please provide a valid email address')
+    throw new InvalidBackInStockRequestError('Please provide a valid email address')
   }
 
   if (!productNumber) {
-    throw new Error('Product number is missing ')
+    throw new InvalidBackInStockRequestError('Product number is missing ')
   }
 
   const { backInStockAPIUrl, backInStockShopName } = context.config || {}
 
   if (!backInStockAPIUrl || !backInStockShopName) {
-    throw new Error('API url or shop name not set')
+    throw new InvalidBackInStockRequestError('API url or shop name not set')
   }
 
   const requestOptions = {
@@ -43,7 +47,7 @@ module.exports = async (context, input) => {
   const { message, status, errors } = response || {}
 
   if (errors) {
-    throw new Error(JSON.stringify(errors))
+    throw new InvalidBackInStockRequestError(parseBackInStockErrors(errors))
   }
 
   return { message, status }

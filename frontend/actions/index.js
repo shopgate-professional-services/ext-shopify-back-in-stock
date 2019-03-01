@@ -12,7 +12,7 @@ import { IN_STOCK_NOTIFICATION_PIPELINE } from '../constants';
  * @param {string} productNumber Base Product id for which the notification is being requested.
  * @param {string} variantNumber Variant id for which the notification is being requested.
  * @param {string} email Email Address to which the notification will be sent.
- * @returns {function}
+ * @returns {Function}
  */
 export const sendInStockNotificationRequest =
   (productNumber, variantNumber, email) => (dispatch) => {
@@ -23,10 +23,10 @@ export const sendInStockNotificationRequest =
       .dispatch()
       .then((response) => {
         console.log('response from inStockNotificationRequestPipeline', response);
-        dispatch(receiveInStockNotificationConfirmation(variantNumber, response.status, response.message));
+        dispatch(receiveInStockNotificationConfirmation(productNumber, variantNumber, response.status, response.message));
       })
       .catch((err) => {
         logger.error(err);
-        dispatch(errorInStockNotification(variantNumber));
+        dispatch(errorInStockNotification(productNumber, variantNumber));
       });
   };
