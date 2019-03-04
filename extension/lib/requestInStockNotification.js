@@ -8,7 +8,6 @@ const parseBackInStockErrors = require('../helpers/parseBackInStockErrors')
  * @returns {Promise<Object>}
  */
 module.exports = async (context, input) => {
-  console.log('input from requestInStockNotification', JSON.stringify(input, undefined, 2))
   const { email, productNumber, variantNumber } = input
   if (!email) {
     throw new InvalidBackInStockRequestError('Please provide a valid email address')

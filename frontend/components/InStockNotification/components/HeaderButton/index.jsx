@@ -6,7 +6,7 @@ import styles from './styles';
 /**
  * Render HeaderButton
  * @param {string} text Button text
- * @param {function} onClick Function to call when clicked
+ * @param {Function} onClick Function to call when clicked
  * @return {JSX}
  */
 const HeaderButton = ({ text, onClick }) => (

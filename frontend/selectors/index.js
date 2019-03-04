@@ -76,7 +76,8 @@ export const getInStockNotificationConfirmation = createSelector(
   getBaseProductId,
   getVariantId,
   getInStockNotificationConfirmationsState,
-  (baseProductId, variantId, confirmations) => confirmations[`${baseProductId}_${variantId}`]
+  (baseProductId, variantId, confirmations) =>
+    (confirmations ? confirmations[`${baseProductId}_${variantId}`] : null)
 );
 
 /**

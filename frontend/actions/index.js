@@ -18,11 +18,10 @@ export const sendInStockNotificationRequest =
   (productNumber, variantNumber, email) => (dispatch) => {
     dispatch(requestInStockNotification(productNumber, variantNumber, email));
 
-    new PipelineRequest(IN_STOCK_NOTIFICATION_PIPELINE)
+    return new PipelineRequest(IN_STOCK_NOTIFICATION_PIPELINE)
       .setInput({ productNumber, variantNumber, email })
       .dispatch()
       .then((response) => {
-        console.log('response from inStockNotificationRequestPipeline', response);
         dispatch(receiveInStockNotificationConfirmation(productNumber, variantNumber, response.status, response.message));
       })
       .catch((err) => {
