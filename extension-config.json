@@ -82,7 +82,7 @@
     "backInStockShopName": {
       "type": "admin",
       "destination": "backend",
-      "default": "merlins-magnificent-magic-shop.myshopify.com",
+      "default": "",
       "params": {
         "type": "text",
         "label": "The name of the shop Back In Stock is integrated with"
