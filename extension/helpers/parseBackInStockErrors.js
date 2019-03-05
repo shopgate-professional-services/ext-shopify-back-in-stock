@@ -3,5 +3,5 @@ module.exports = (backInStockErrorObject) => {
     return backInStockErrorObject
   }
   const errorValues = Object.values(backInStockErrorObject)
-  return [].concat.apply([], errorValues).join(' ')
+  return [].concat(...errorValues).join(' ')
 }

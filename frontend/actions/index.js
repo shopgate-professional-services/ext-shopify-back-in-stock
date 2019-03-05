@@ -8,7 +8,7 @@ import {
 import { IN_STOCK_NOTIFICATION_PIPELINE } from '../constants';
 
 /**
- * Get product swatches action.
+ * Send In Stock Notification Request action.
  * @param {string} productNumber Base Product id for which the notification is being requested.
  * @param {string} variantNumber Variant id for which the notification is being requested.
  * @param {string} email Email Address to which the notification will be sent.
@@ -19,7 +19,11 @@ export const sendInStockNotificationRequest =
     dispatch(requestInStockNotification(productNumber, variantNumber, email));
 
     return new PipelineRequest(IN_STOCK_NOTIFICATION_PIPELINE)
-      .setInput({ productNumber, variantNumber, email })
+      .setInput({
+        productNumber,
+        variantNumber,
+        email,
+      })
       .dispatch()
       .then((response) => {
         dispatch(receiveInStockNotificationConfirmation(productNumber, variantNumber, response.status, response.message));

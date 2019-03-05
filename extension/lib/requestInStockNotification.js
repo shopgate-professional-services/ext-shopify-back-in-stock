@@ -14,7 +14,11 @@ module.exports = async (context, input) => {
   }
 
   if (!productNumber) {
-    throw new InvalidBackInStockRequestError('Product number is missing ')
+    throw new InvalidBackInStockRequestError('Product number is missing')
+  }
+
+  if (!variantNumber) {
+    throw new InvalidBackInStockRequestError('variant number is missing')
   }
 
   const { backInStockAPIUrl, backInStockShopName } = context.config || {}
