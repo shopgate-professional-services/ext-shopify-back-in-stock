@@ -4,7 +4,7 @@ import { hex2bin } from '@shopgate/pwa-common/helpers/data';
 import connect from './connector';
 import InStockNotification from '../../components/InStockNotification';
 
-const InStockNotificationWrapper = connect(props => <InStockNotification {...props} />)
+const InStockNotificationWrapper = connect(props => <InStockNotification {...props} />);
 
 export default props => (
   <RouteContext.Consumer>
