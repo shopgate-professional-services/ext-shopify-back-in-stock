@@ -1,10 +1,10 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0-rc.1",
   "id": "@shopgate-project/shopify-back-in-stock",
   "components": [
     {
       "id": "InStockNotification",
-      "path": "frontend/portals/InStockNotificationWrapper/index.jsx",
+      "path": "frontend/portals/BackInStockPortal",
       "target": "product.header.after",
       "type": "portals"
     },
@@ -22,6 +22,11 @@
       "type": "translations",
       "path": "frontend/locale/de-DE.json",
       "id": "locale/de-DE"
+    },
+    {
+      "id": "subscriptions",
+      "path": "frontend/subscriptions/index.js",
+      "type": "subscribers"
     }
   ],
   "configuration": {

@@ -2,7 +2,7 @@
   "inStockNotification": {
     "header": {
       "before_submit": "E-MAIL WENN VERFÜGBAR",
-      "after_submit": "Benachrichtigungsanfrage gesendetT"
+      "after_submit": "Benachrichtigungsanfrage gesendet"
     },
     "form": {
       "input": {
@@ -10,6 +10,9 @@
         "error_text": "Bitte geben Sie eine gültige E-Mail Adresse an"
       },
       "submit": "Senden"
+    },
+    "modal": {
+      "close": "okay"
     }
   }
 }

@@ -10,6 +10,9 @@
         "error_text": "Please provide a valid email address"
       },
       "submit": "Submit"
+    },
+    "modal": {
+      "close": "ok"
     }
   }
 }

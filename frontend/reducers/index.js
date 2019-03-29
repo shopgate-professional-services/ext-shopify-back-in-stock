@@ -46,9 +46,7 @@ const backInStockNotificationReducer = (
         },
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
 

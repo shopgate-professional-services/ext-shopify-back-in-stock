@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { getBaseProductId } from '@shopgate/pwa-common-commerce/product/selectors/product';
 import { getUserEmail } from '@shopgate/pwa-common/selectors/user';
-import showModal from '@shopgate/pwa-common/actions/modal/showModal';
 import {
   getVariantId,
   getShouldShowInStockForm,
@@ -37,7 +36,6 @@ const mapDispatchToProps = dispatch => ({
   sendRequest: (productNumber, variantNumber, email) => (
     dispatch(sendInStockNotificationRequest(productNumber, variantNumber, email))
   ),
-  showConfirmationModal: options => dispatch(showModal(options)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

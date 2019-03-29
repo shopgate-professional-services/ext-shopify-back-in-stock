@@ -13,11 +13,11 @@
   },
   "devDependencies": {
     "@shopgate/eslint-config": "*",
-    "@shopgate/pwa-common": "*",
-    "@shopgate/pwa-common-commerce": "*",
-    "@shopgate/pwa-core": "*",
+    "@shopgate/pwa-common": "^6.3.1",
+    "@shopgate/pwa-common-commerce": "^6.3.1",
+    "@shopgate/pwa-core": "^6.3.1",
     "jest": "^22.4.2",
-    "@shopgate/pwa-unit-test": "*",
+    "@shopgate/pwa-unit-test": "^6.3.1",
     "babel-core": "^6.26.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -33,5 +33,8 @@
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.1.3",
     "react-transform-catch-errors": "^1.0.2"
+  },
+  "dependencies": {
+    "@shopgate-ps/pwa-extension-kit": "^0.6.0"
   }
 }
