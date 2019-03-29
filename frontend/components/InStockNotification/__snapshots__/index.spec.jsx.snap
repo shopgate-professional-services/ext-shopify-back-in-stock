@@ -8,7 +8,6 @@ exports[`inStockNotification should show notification form because there is a pr
   isFetching={false}
   productNumber="testProductNumber"
   sendRequest={[Function]}
-  showConfirmationModal={[Function]}
   showForm={true}
   variantNumber="testVariantNumber"
 >
@@ -328,7 +327,6 @@ exports[`inStockNotification should show notification while fetching 1`] = `
   isFetching={true}
   productNumber="testProductNumber"
   sendRequest={[Function]}
-  showConfirmationModal={[Function]}
   showForm={true}
   variantNumber="testVariantNumber"
 >
@@ -647,7 +645,6 @@ exports[`inStockNotification should show only HeaderButton because there is a co
   email={null}
   productNumber={null}
   sendRequest={[Function]}
-  showConfirmationModal={[Function]}
   showForm={false}
   variantNumber={null}
 >
