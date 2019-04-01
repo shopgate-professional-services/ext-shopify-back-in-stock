@@ -20,7 +20,7 @@ const backInStockNotificationSubscriptions = (subscribe) => {
     dispatch(showModal({
       message: action.message,
       dismiss: null,
-      confirm: 'inStockNotification.modal.close',
+      confirm: 'modal.ok',
     }));
   });
 };

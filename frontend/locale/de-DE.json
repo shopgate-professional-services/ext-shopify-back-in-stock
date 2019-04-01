@@ -10,9 +10,6 @@
         "error_text": "Bitte geben Sie eine gültige E-Mail Adresse an"
       },
       "submit": "Senden"
-    },
-    "modal": {
-      "close": "okay"
     }
   }
 }
