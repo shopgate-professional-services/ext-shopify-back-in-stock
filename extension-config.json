@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0-rc.3",
+  "id": "@shopgate-project/shopify-back-in-stock",
+  "components": [
+    {
+      "id": "InStockNotification",
+      "path": "frontend/portals/BackInStockPortal",
+      "target": "product.header.after",
+      "type": "portals"
+    },
+    {
+      "id": "inStockNotificationConfirmations",
+      "path": "frontend/reducers/index.js",
+      "type": "reducers"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/en-US.json",
+      "id": "locale/en-US"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/de-DE.json",
+      "id": "locale/de-DE"
+    },
+    {
+      "id": "subscriptions",
+      "path": "frontend/subscriptions/index.js",
+      "type": "subscribers"
+    }
+  ],
+  "configuration": {
+    "backInStockButtonColor": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Hex color code Back in Stock buttons should have"
+      }
+    },
+    "backInStockButtonTextColor": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Hex color code Back in Stock buttons text should have"
+      }
+    },
+    "backInStockOpenFormButtonText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text the bar which opens the in stock form should have"
+      }
+    },
+    "backInStockFormSubmitButtonText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text of the Back in Stock form submit button"
+      }
+    },
+    "backInStockSubmissionConfirmationText": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Text of form header bar after notification text has been submitted"
+      }
+    },
+    "backInStockAPIUrl": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "https://app.backinstock.org/stock_notification/create.json",
+      "params": {
+        "type": "text",
+        "label": "URL to create a stock notification request"
+      }
+    },
+    "backInStockShopName": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "The name of the shop Back In Stock is integrated with"
+      }
+    }
+  },
+  "steps": [
+    {
+      "path": "extension/steps/exposeCustomDataToGetProduct.js",
+      "hooks": ["shopgate.catalog.getProduct.v1:afterFetchProducts"],
+      "input": [
+        {
+          "key": "products"
+        }
+      ],
+      "output": [
+        {
+          "key": "customData",
+          "addPipelineOutput": true
+        }
+      ]
+    }
+  ]
+}
