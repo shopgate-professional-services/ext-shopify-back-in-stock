@@ -120,7 +120,7 @@ describe('Selectors', () => {
 
     it('should return null', () => {
       const result
-              = getInStockNotificationConfirmationMessage(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
+        = getInStockNotificationConfirmationMessage(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
       expect(result).toEqual(null);
     });
   });
@@ -132,7 +132,7 @@ describe('Selectors', () => {
 
     it('should return null', () => {
       const result
-              = getInStockNotificationConfirmationStatus(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
+        = getInStockNotificationConfirmationStatus(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
       expect(result).toEqual(null);
     });
   });
@@ -144,7 +144,7 @@ describe('Selectors', () => {
 
     it('should return null', () => {
       const result
-              = getInStockNotificationConfirmationisFetching(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
+        = getInStockNotificationConfirmationisFetching(MOCK_EMPTY_IN_STOCK_STATE, MOCK_PROPS);
       expect(result).toEqual(false);
     });
   });
