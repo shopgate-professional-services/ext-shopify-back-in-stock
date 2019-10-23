@@ -19,8 +19,19 @@ import parseJson from '../helpers/parseJson';
 export const getShopifyVariant = createSelector(
   getProductById,
   (product) => {
-    const { productData } = product || {};
-    const { customData } = productData || {};
+    const { productData = {} } = product || {};
+    /**
+    * CustomData contains shopifyVariantId with getProducts pipeline
+    * backInStockCustomData exposes customData after getProduct pipeline call.
+    * backInStockCustomData needs a different name then customData
+    * in case of additional need for customData exposure in separate extensions.
+    */
+    const customData = productData.customData || productData.backInStockCustomData;
+
+    if (!customData) {
+      return null;
+    }
+
     const customDataObject = parseJson(customData);
     const { variant_id: shopifyVariantId } = customDataObject || {};
     return shopifyVariantId ? `${shopifyVariantId}` : null;

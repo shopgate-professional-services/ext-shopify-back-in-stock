@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "id": "@shopgate-project/shopify-back-in-stock",
   "components": [
     {
@@ -97,7 +97,9 @@
   "steps": [
     {
       "path": "extension/steps/exposeCustomDataToGetProduct.js",
-      "hooks": ["shopgate.catalog.getProduct.v1:afterFetchProducts"],
+      "hooks": [
+        "shopgate.catalog.getProduct.v1:afterFetchProducts"
+      ],
       "input": [
         {
           "key": "products"
@@ -105,7 +107,7 @@
       ],
       "output": [
         {
-          "key": "customData",
+          "key": "backInStockCustomData",
           "addPipelineOutput": true
         }
       ]
