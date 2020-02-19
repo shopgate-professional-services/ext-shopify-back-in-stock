@@ -26,7 +26,9 @@ export const sendInStockNotificationRequest =
       })
       .dispatch()
       .then((response) => {
-        dispatch(receiveInStockNotificationConfirmation(productNumber, variantNumber, response.status, response.message));
+        dispatch(receiveInStockNotificationConfirmation(
+          productNumber, variantNumber, response.status, response.message
+        ));
       })
       .catch((err) => {
         logger.error(err);

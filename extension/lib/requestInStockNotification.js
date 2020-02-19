@@ -1,5 +1,8 @@
 const InvalidBackInStockRequestError = require('../errors/InvalidBackInStockRequestError')
 const parseBackInStockErrors = require('../helpers/parseBackInStockErrors')
+const INFORMATIONAL_USER_ERRORS = [
+  'You have already registered for a notification for that item.'
+]
 
 /**
  * Do request to back in stock api
@@ -48,10 +51,13 @@ module.exports = async (context, input) => {
 
   const response = await request(requestOptions)
   const { message, status, errors } = response || {}
+  const apiErrorMessage = parseBackInStockErrors(errors)
 
-  if (errors) {
-    throw new InvalidBackInStockRequestError(parseBackInStockErrors(errors))
+  // Throw error only when it is not an informational user error like 'already registered'
+  if (errors && !INFORMATIONAL_USER_ERRORS.includes(apiErrorMessage)) {
+    throw new InvalidBackInStockRequestError(apiErrorMessage)
   }
 
-  return { message, status }
+  // If there is a message there will not be an error message and vice versa
+  return { message: message || apiErrorMessage, status }
 }
